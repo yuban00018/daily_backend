@@ -9,7 +9,8 @@ public enum EmAllException implements CommonError{
     NO_LOGIN_AUTHORIZATION(403, "没有登录权限"),
     NO_SUCH_USER(403, "用户不存在"),
     BAD_REQUEST(400, "请求参数格式有误"),
-    UNKNOWN_ERROR(500,"未知错误")
+    UNKNOWN_ERROR(500,"未知错误"),
+    TOKEN_ERROR(403,"TOKEN错误")
     ;
 
     // 错误码

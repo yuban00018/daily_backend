@@ -1,6 +1,7 @@
 package com.daily.security;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -10,7 +11,7 @@ import java.util.Collection;
 /*
  * @Author:yuban00018
  * @Date:2022/1/30
- * @Description:
+ * @Description: Java Web Token用户
  */
 @Data
 public class JwtUser implements UserDetails {

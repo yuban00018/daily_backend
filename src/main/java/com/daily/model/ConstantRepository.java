@@ -12,4 +12,5 @@ public class ConstantRepository {
     public final static int TOKEN_FAKE_EXCEPTION = -1;
     public final static int TOKEN_VALID = 1;
     public final static String TOKEN_HEADER = "Bearer ";
+    public static final String TOKEN_NAME = "Authorization";
 }

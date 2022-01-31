@@ -25,7 +25,7 @@ import static com.daily.model.ConstantRepository.*;
 /*
  * @Author:yuban00018
  * @Date:2022/1/30
- * @Description:
+ * @Description: Java Web Token工具类，提供生成和验证Token的功能
  */
 @Slf4j
 @Component
@@ -46,7 +46,7 @@ public class JwtTool {
      * @Author: yuban00018
      * @Date: 2022/1/30
      * @Return: token
-     * @Description: create Jwt token
+     * @Description: 生成token
      */
     public String createJwt(String id, String name) {
         Date currentDate = new Date();
@@ -66,13 +66,14 @@ public class JwtTool {
      * @Author: yuban00018
      * @Date: 2022/1/30
      * @Return: int -> is token valid
-     * @Description: validate token
+     * @Description: 验证token
      */
     public int validateToken(String token) {
+        log.info(token);
         try {
             Algorithm algorithm = Algorithm.HMAC256(ENCODE_KEY.getBytes());
             if (jwtVerifier == null) {
-                //create verifier
+                //生成HMAC256算法的Jwt验证器
                 jwtVerifier = JWT.require(algorithm).build();
             }
             jwtVerifier.verify(token);
@@ -86,8 +87,10 @@ public class JwtTool {
             log.info("Token Invalid: {}", e.toString());
             return TOKEN_FAKE_EXCEPTION;
         }
+        //解码token
         DecodedJWT decodedJWT = JWT.decode(token);
         String id = decodedJWT.getSubject();
+        //验证签名
         UserDo userDo = userDoMapper.selectByPrimaryKey(Integer.parseInt(id));
         if (userDo == null) {
             return TOKEN_FAKE_EXCEPTION;
