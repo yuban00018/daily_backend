@@ -12,6 +12,7 @@ import com.daily.model.response.LoginResponse;
 import com.daily.model.response.Result;
 import com.daily.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import com.daily.tools.JwtTool;
 import com.daily.tools.ResultTool;
@@ -51,8 +52,8 @@ public class UserServiceImpl implements UserService {
             }
             LoginResponse loginResponse = new LoginResponse();
             UserDo userDo = userDoList.get(0);
-            loginResponse.setName(userDo.getName());
-            loginResponse.setAvatar(userDo.getAvatar());
+            BeanUtils.copyProperties(userDo,loginResponse);
+            log.info(userDo.getId().toString());
             //generate token
             loginResponse.setToken(jwtTool.createJwt(userDo.getId().toString(),userDo.getName()));
             return ResultTool.success(loginResponse);

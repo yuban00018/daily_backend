@@ -57,7 +57,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             return;
         } else {
             try {
-                token = token.split(" ")[2];//remove the Bearer prefix
+                token = token.split(" ")[1];//remove the Bearer prefix
             } catch (IndexOutOfBoundsException e){
                 returnErrorMessage(response, "前缀缺失");
                 return;

@@ -176,12 +176,12 @@ public class UserDoExample {
         }
 
         public Criteria andNameEqualTo(String value) {
-            addCriterion("name =", value, "name");
+            addCriterion("binary name =", value, "name");
             return (Criteria) this;
         }
 
         public Criteria andNameNotEqualTo(String value) {
-            addCriterion("name <>", value, "name");
+            addCriterion("binary name <>", value, "name");
             return (Criteria) this;
         }
 
