@@ -10,9 +10,11 @@ import com.daily.model.entity.UserDoExample;
 import com.daily.model.request.LoginInfo;
 import com.daily.model.response.LoginResponse;
 import com.daily.model.response.Result;
+import com.daily.model.response.UserInfoResponse;
 import com.daily.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import com.daily.tools.JwtTool;
 import com.daily.tools.ResultTool;
@@ -58,5 +60,14 @@ public class UserServiceImpl implements UserService {
             loginResponse.setToken(jwtTool.createJwt(userDo.getId().toString(),userDo.getName()));
             return ResultTool.success(loginResponse);
         }
+    }
+
+    @Override
+    public Result getInfo() {
+        Integer id = Integer.valueOf(SecurityContextHolder.getContext().getAuthentication().getName());
+        UserDo userDo = userDoMapper.selectByPrimaryKey(id);
+        UserInfoResponse userInfoResponse = new UserInfoResponse();
+        BeanUtils.copyProperties(userDo, userInfoResponse);
+        return ResultTool.success(userInfoResponse);
     }
 }

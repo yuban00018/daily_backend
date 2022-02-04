@@ -3,15 +3,15 @@
 
  Source Server         : local
  Source Server Type    : MySQL
- Source Server Version : 80021
+ Source Server Version : 80025
  Source Host           : localhost:3306
  Source Schema         : daily
 
  Target Server Type    : MySQL
- Target Server Version : 80021
+ Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 31/01/2022 17:36:31
+ Date: 04/02/2022 21:55:18
 */
 
 SET NAMES utf8mb4;
@@ -25,6 +25,7 @@ CREATE TABLE `failed_todo`  (
   `user_id` int(0) NOT NULL,
   `plan_id` bigint(0) NOT NULL,
   `faile_date` datetime(0) NULL DEFAULT NULL,
+  `rate` float NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`, `plan_id`) USING BTREE,
   INDEX `FK_plan_id`(`plan_id`) USING BTREE,
   INDEX `FK_plan_failed_date`(`faile_date`) USING BTREE,
@@ -59,7 +60,7 @@ CREATE TABLE `plan`  (
   PRIMARY KEY (`plan_id`) USING BTREE,
   INDEX `FK_plan_user_id`(`user_id`) USING BTREE,
   CONSTRAINT `FK_plan_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for user

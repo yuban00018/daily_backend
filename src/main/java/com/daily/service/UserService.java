@@ -17,4 +17,5 @@ public interface UserService {
      * @Description: 登录接口
      */
     Result login(LoginInfo loginInfo);
+    Result getInfo();
 }

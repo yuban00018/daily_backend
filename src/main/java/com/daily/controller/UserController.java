@@ -17,12 +17,17 @@ import javax.annotation.Resource;
 @Slf4j
 @CrossOrigin
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/user")
 public class UserController {
     @Resource
     UserService userService;
 
-    @PostMapping("")
+    @GetMapping("/info")
+    public Result getInfo(){
+        return userService.getInfo();
+    }
+
+    @PostMapping("/login")
     public Result Login(@Validated @RequestBody LoginInfo loginInfo){
         return userService.login(loginInfo);
     }
