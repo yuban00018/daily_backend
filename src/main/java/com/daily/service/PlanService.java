@@ -1,6 +1,7 @@
 package com.daily.service;
 
-import com.daily.model.request.TodoCheckInfo;
+import com.daily.model.request.PlanInfo;
+import com.daily.model.request.UpdatePlanInfo;
 import com.daily.model.response.Result;
 
 /**
@@ -11,6 +12,8 @@ import com.daily.model.response.Result;
  * @version: 2022/2/2
  */
 public interface PlanService {
-    public Result check(TodoCheckInfo todoCheckInfo);
+    public Result update(UpdatePlanInfo updatePlanInfo);
     public Result getList(Integer id);
+    public Result add(PlanInfo planInfo);
+    public Result deletePlan(long id);
 }

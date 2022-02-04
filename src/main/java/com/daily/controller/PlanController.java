@@ -1,6 +1,7 @@
 package com.daily.controller;
 
-import com.daily.model.request.TodoCheckInfo;
+import com.daily.model.request.PlanInfo;
+import com.daily.model.request.UpdatePlanInfo;
 import com.daily.model.response.Result;
 import com.daily.service.PlanService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,12 +25,24 @@ public class PlanController {
     @Resource
     private PlanService planService;
 
-    @PostMapping("/check")
-    public Result check(@Validated @RequestBody TodoCheckInfo todoCheckInfo){
-        return planService.check(todoCheckInfo);
+    @PostMapping("/update")
+    public Result update(@Validated @RequestBody UpdatePlanInfo updatePlanInfo){
+        return planService.update(updatePlanInfo);
     }
+
     @GetMapping("/list")
     public Result getList(Integer id){
+
         return planService.getList(id);
+    }
+
+    @PostMapping("/add")
+    public Result add(@Validated @RequestBody PlanInfo planInfo){
+        return planService.add(planInfo);
+    }
+
+    @GetMapping("/delete")
+    public Result deletePlan(long planId){
+        return planService.deletePlan(planId);
     }
 }

@@ -1,12 +1,11 @@
 package com.daily.service.Impl;
 
-import ch.qos.logback.core.joran.util.beans.BeanUtil;
 import com.daily.dao.PlanDoMapper;
 import com.daily.exception.EmAllException;
 import com.daily.model.entity.PlanDo;
 import com.daily.model.entity.PlanDoExample;
-import com.daily.model.request.TodoCheckInfo;
-import com.daily.model.response.PlanListResponse;
+import com.daily.model.request.PlanInfo;
+import com.daily.model.request.UpdatePlanInfo;
 import com.daily.model.response.Result;
 import com.daily.service.PlanService;
 import com.daily.tools.ResultTool;
@@ -30,13 +29,42 @@ import java.util.*;
 public class PlanServiceImpl implements PlanService {
     @Resource
     PlanDoMapper planDoMapper;
+
     @Override
-    public Result check(TodoCheckInfo todoCheckInfo) {
-        PlanDo planDo = planDoMapper.selectByPrimaryKey(todoCheckInfo.getId());
+    public Result deletePlan(long id) {
+        PlanDo planDo = planDoMapper.selectByPrimaryKey(id);
         String user_id = SecurityContextHolder.getContext().getAuthentication().getName();
         if(planDo.getUserId().toString().equals(user_id)){
-            planDo.setDone(todoCheckInfo.getDone());
-            planDoMapper.updateByPrimaryKeySelective(planDo);
+            planDoMapper.deleteByPrimaryKey(id);
+            return ResultTool.success();
+        } else {
+            return ResultTool.error(EmAllException.NOT_AUTHORIZED);
+        }
+    }
+
+    @Override
+    public Result add(PlanInfo planInfo) {
+        PlanDo planDo = new PlanDo();
+        planDo.setDone("0");
+        planDo.setContent(planInfo.getContent());
+        planDo.setFrequency(planInfo.getFrequency());
+        planDo.setStartSince(new Date());
+        planDo.setLastDoneDate(null);
+        planDo.setType("on");
+        planDo.setUserId(Integer.parseInt(SecurityContextHolder.getContext().getAuthentication().getName()));
+        planDoMapper.insertSelective(planDo);
+        return ResultTool.success();
+    }
+
+    @Override
+    public Result update(UpdatePlanInfo updatePlanInfo) {
+        PlanDo planDo = planDoMapper.selectByPrimaryKey(updatePlanInfo.getPlanId());
+        String user_id = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(planDo.getUserId().toString().equals(user_id)){
+            PlanDo newPlanDo = new PlanDo();
+            newPlanDo.setPlanId(planDo.getPlanId());
+            BeanUtils.copyProperties(updatePlanInfo,newPlanDo);
+            planDoMapper.updateByPrimaryKeySelective(newPlanDo);
             return ResultTool.success();
         } else {
             return ResultTool.error(EmAllException.NOT_AUTHORIZED);
@@ -47,22 +75,12 @@ public class PlanServiceImpl implements PlanService {
         String user_id = SecurityContextHolder.getContext().getAuthentication().getName();
         if(id.toString().equals(user_id)) {
             PlanDoExample planDoExample = new PlanDoExample();
-            planDoExample.createCriteria().andUserIdEqualTo(id).andTypeEqualTo("on");
+            planDoExample.createCriteria().andUserIdEqualTo(id);
             List<PlanDo> planDoList = planDoMapper.selectByExample(planDoExample);
             if(planDoList==null){
                 return ResultTool.success();
             }
-            Calendar cal = new GregorianCalendar();
-            int day = cal.get(Calendar.DAY_OF_WEEK)-1;
-            List<PlanListResponse> planList = new ArrayList<>();
-            planDoList.forEach(planDo -> {
-                if(planDo.getFrequency().contains(Integer.toString(day))){
-                    PlanListResponse planListResponse = new PlanListResponse();
-                    BeanUtils.copyProperties(planDo,planListResponse);
-                    planList.add(planListResponse);
-                }
-            });
-            return ResultTool.success(planList);
+            return ResultTool.success(planDoList);
         } else {
             log.info(user_id+" "+id.toString());
             return ResultTool.error(EmAllException.NOT_AUTHORIZED);
