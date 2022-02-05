@@ -105,6 +105,66 @@ public class FailedTodoDoExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andIdIsNull() {
+            addCriterion("id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdIsNotNull() {
+            addCriterion("id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdEqualTo(Integer value) {
+            addCriterion("id =", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotEqualTo(Integer value) {
+            addCriterion("id <>", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdGreaterThan(Integer value) {
+            addCriterion("id >", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("id >=", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdLessThan(Integer value) {
+            addCriterion("id <", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdLessThanOrEqualTo(Integer value) {
+            addCriterion("id <=", value, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdIn(List<Integer> values) {
+            addCriterion("id in", values, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotIn(List<Integer> values) {
+            addCriterion("id not in", values, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdBetween(Integer value1, Integer value2) {
+            addCriterion("id between", value1, value2, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("id not between", value1, value2, "id");
+            return (Criteria) this;
+        }
+
         public Criteria andUserIdIsNull() {
             addCriterion("user_id is null");
             return (Criteria) this;
@@ -162,66 +222,6 @@ public class FailedTodoDoExample {
 
         public Criteria andUserIdNotBetween(Integer value1, Integer value2) {
             addCriterion("user_id not between", value1, value2, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlanIdIsNull() {
-            addCriterion("plan_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlanIdIsNotNull() {
-            addCriterion("plan_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlanIdEqualTo(Long value) {
-            addCriterion("plan_id =", value, "planId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlanIdNotEqualTo(Long value) {
-            addCriterion("plan_id <>", value, "planId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlanIdGreaterThan(Long value) {
-            addCriterion("plan_id >", value, "planId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlanIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("plan_id >=", value, "planId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlanIdLessThan(Long value) {
-            addCriterion("plan_id <", value, "planId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlanIdLessThanOrEqualTo(Long value) {
-            addCriterion("plan_id <=", value, "planId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlanIdIn(List<Long> values) {
-            addCriterion("plan_id in", values, "planId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlanIdNotIn(List<Long> values) {
-            addCriterion("plan_id not in", values, "planId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlanIdBetween(Long value1, Long value2) {
-            addCriterion("plan_id between", value1, value2, "planId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPlanIdNotBetween(Long value1, Long value2) {
-            addCriterion("plan_id not between", value1, value2, "planId");
             return (Criteria) this;
         }
 

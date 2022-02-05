@@ -1,9 +1,11 @@
 package com.daily.model.entity;
 
+import java.util.Date;
+
 public class FailedTodoDoKey {
     private Integer userId;
 
-    private Long planId;
+    private Date faileDate;
 
     public Integer getUserId() {
         return userId;
@@ -13,11 +15,11 @@ public class FailedTodoDoKey {
         this.userId = userId;
     }
 
-    public Long getPlanId() {
-        return planId;
+    public Date getFaileDate() {
+        return faileDate;
     }
 
-    public void setPlanId(Long planId) {
-        this.planId = planId;
+    public void setFaileDate(Date faileDate) {
+        this.faileDate = faileDate;
     }
 }

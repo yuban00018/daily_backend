@@ -2,7 +2,6 @@ package com.daily.dao;
 
 import com.daily.model.entity.FailedTodoDo;
 import com.daily.model.entity.FailedTodoDoExample;
-import com.daily.model.entity.FailedTodoDoKey;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,7 +10,7 @@ public interface FailedTodoDoMapper {
 
     int deleteByExample(FailedTodoDoExample example);
 
-    int deleteByPrimaryKey(FailedTodoDoKey key);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(FailedTodoDo record);
 
@@ -19,7 +18,7 @@ public interface FailedTodoDoMapper {
 
     List<FailedTodoDo> selectByExample(FailedTodoDoExample example);
 
-    FailedTodoDo selectByPrimaryKey(FailedTodoDoKey key);
+    FailedTodoDo selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") FailedTodoDo record, @Param("example") FailedTodoDoExample example);
 
