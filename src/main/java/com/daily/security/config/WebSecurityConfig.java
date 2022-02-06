@@ -34,7 +34,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/login/**").permitAll()
+                .antMatchers("/user/login/**").permitAll()
+                .antMatchers("/user/**").authenticated()
+                .antMatchers("/statistic/**").authenticated()
                 .antMatchers("/plan/**").authenticated();
 
         //请求过滤器，必须要加上，否则无法鉴权
