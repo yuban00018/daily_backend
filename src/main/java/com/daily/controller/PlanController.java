@@ -32,7 +32,6 @@ public class PlanController {
 
     @GetMapping("/list")
     public Result getList(Integer id){
-
         return planService.getList(id);
     }
 

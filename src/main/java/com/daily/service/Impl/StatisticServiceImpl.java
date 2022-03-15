@@ -6,6 +6,7 @@ import com.daily.model.entity.FailedTodoDoExample;
 import com.daily.model.response.RecentRateResponse;
 import com.daily.model.response.Result;
 import com.daily.service.StatisticService;
+import com.daily.tools.AuthTool;
 import com.daily.tools.ResultTool;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContext;
@@ -27,6 +28,9 @@ import java.util.List;
 public class StatisticServiceImpl implements StatisticService {
     @Resource
     FailedTodoDoMapper failedTodoDoMapper;
+
+    @Resource
+    private AuthTool authTool;
     /**
      * @Author: yuban00018
      * @Date: 2022/2/6
@@ -35,7 +39,7 @@ public class StatisticServiceImpl implements StatisticService {
      */
     @Override
     public Result getRecentRate() {
-        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+        String userId = authTool.getUserId();
         FailedTodoDoExample failedTodoDoExample = new FailedTodoDoExample();
         failedTodoDoExample.setOrderByClause("faile_date desc");
         failedTodoDoExample.createCriteria()

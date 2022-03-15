@@ -8,6 +8,7 @@ import com.daily.model.request.PlanInfo;
 import com.daily.model.request.UpdatePlanInfo;
 import com.daily.model.response.Result;
 import com.daily.service.PlanService;
+import com.daily.tools.AuthTool;
 import com.daily.tools.ResultTool;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -30,10 +31,13 @@ public class PlanServiceImpl implements PlanService {
     @Resource
     PlanDoMapper planDoMapper;
 
+    @Resource
+    private AuthTool authTool;
+
     @Override
     public Result deletePlan(long id) {
         PlanDo planDo = planDoMapper.selectByPrimaryKey(id);
-        String user_id = SecurityContextHolder.getContext().getAuthentication().getName();
+        String user_id = authTool.getUserId();
         if(planDo.getUserId().toString().equals(user_id)){
             planDoMapper.deleteByPrimaryKey(id);
             return ResultTool.success();
@@ -59,7 +63,7 @@ public class PlanServiceImpl implements PlanService {
     @Override
     public Result update(UpdatePlanInfo updatePlanInfo) {
         PlanDo planDo = planDoMapper.selectByPrimaryKey(updatePlanInfo.getPlanId());
-        String user_id = SecurityContextHolder.getContext().getAuthentication().getName();
+        String user_id = authTool.getUserId();
         if(planDo.getUserId().toString().equals(user_id)){
             PlanDo newPlanDo = new PlanDo();
             newPlanDo.setPlanId(planDo.getPlanId());
@@ -71,8 +75,8 @@ public class PlanServiceImpl implements PlanService {
         }
     }
     @Override
-    public Result getList(Integer id){
-        String user_id = SecurityContextHolder.getContext().getAuthentication().getName();
+    public Result getList(Integer id) {
+        String user_id = authTool.getUserId();
         if(id.toString().equals(user_id)) {
             PlanDoExample planDoExample = new PlanDoExample();
             planDoExample.createCriteria().andUserIdEqualTo(id);
