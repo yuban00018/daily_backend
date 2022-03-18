@@ -1,6 +1,6 @@
 package com.daily.model.entity;
 
-public class user_group {
+public class UserGroupDo {
     private Integer id;
 
     private Integer userId;

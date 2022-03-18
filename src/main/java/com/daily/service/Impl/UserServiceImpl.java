@@ -55,7 +55,6 @@ public class UserServiceImpl implements UserService {
             LoginResponse loginResponse = new LoginResponse();
             UserDo userDo = userDoList.get(0);
             BeanUtils.copyProperties(userDo,loginResponse);
-            log.info(userDo.getId().toString());
             //generate token
             loginResponse.setToken(jwtTool.createJwt(userDo.getId().toString(),userDo.getName()));
             return ResultTool.success(loginResponse);

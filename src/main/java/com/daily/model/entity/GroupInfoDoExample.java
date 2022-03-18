@@ -3,14 +3,14 @@ package com.daily.model.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class groupExample {
+public class GroupInfoDoExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public groupExample() {
+    public GroupInfoDoExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -531,6 +531,76 @@ public class groupExample {
 
         public Criteria andKindNotBetween(Integer value1, Integer value2) {
             addCriterion("kind not between", value1, value2, "kind");
+            return (Criteria) this;
+        }
+
+        public Criteria andGroupNameIsNull() {
+            addCriterion("group_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGroupNameIsNotNull() {
+            addCriterion("group_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGroupNameEqualTo(String value) {
+            addCriterion("group_name =", value, "groupName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGroupNameNotEqualTo(String value) {
+            addCriterion("group_name <>", value, "groupName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGroupNameGreaterThan(String value) {
+            addCriterion("group_name >", value, "groupName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGroupNameGreaterThanOrEqualTo(String value) {
+            addCriterion("group_name >=", value, "groupName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGroupNameLessThan(String value) {
+            addCriterion("group_name <", value, "groupName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGroupNameLessThanOrEqualTo(String value) {
+            addCriterion("group_name <=", value, "groupName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGroupNameLike(String value) {
+            addCriterion("group_name like", value, "groupName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGroupNameNotLike(String value) {
+            addCriterion("group_name not like", value, "groupName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGroupNameIn(List<String> values) {
+            addCriterion("group_name in", values, "groupName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGroupNameNotIn(List<String> values) {
+            addCriterion("group_name not in", values, "groupName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGroupNameBetween(String value1, String value2) {
+            addCriterion("group_name between", value1, value2, "groupName");
+            return (Criteria) this;
+        }
+
+        public Criteria andGroupNameNotBetween(String value1, String value2) {
+            addCriterion("group_name not between", value1, value2, "groupName");
             return (Criteria) this;
         }
     }

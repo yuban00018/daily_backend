@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="208a2709-a213-48fc-aaf0-e083058a0987" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/ce49a695-59c8-4cfe-a068-28bdd78d1fe9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/ce49a695-59c8-4cfe-a068-28bdd78d1fe9/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/ce49a695-59c8-4cfe-a068-28bdd78d1fe9/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/ce49a695-59c8-4cfe-a068-28bdd78d1fe9/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/ce49a695-59c8-4cfe-a068-28bdd78d1fe9/storage_v2/_src_/schema/sys.zb4BAA.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/daily/controller/GroupController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/daily/dao/GroupInfoDoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/daily/dao/GroupPlanDoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/daily/dao/UserGroupDoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/UserDoKey.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/UserDoWithBLOBs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/daily/model/response/GroupResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/daily/service/GroupService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/daily/service/Impl/GroupServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/generator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/application_ref.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/databaseStructure/daily.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/generator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/generator_ref.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/dao/groupMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/dao/group_planMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/dao/user_groupMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/exception/EmAllException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/exception/EmAllException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/GroupInfoDo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/groupExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/GroupInfoDoExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/group_plan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/GroupPlanDo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/group_planExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/GroupPlanDoExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/user_group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/UserGroupDo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/user_groupExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/UserGroupDoExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/security/MyUserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/security/MyUserDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/service/Impl/PlanServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/service/Impl/PlanServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/service/Impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/service/Impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/tools/FinishRateTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/tools/FinishRateTool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/groupMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/GroupInfoDoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/group_planMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/GroupPlanDoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/user_groupMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/UserGroupDoMapper.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="KotlinMultiplatform">
+    <allAvailableExecutables />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="49d216sd" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="26Y9Di0KHKw61SE3RnopW7yXnh7" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.formatter.settings.were.checked" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Au_Miner\Desktop\数据库2大作业\background\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Au_Miner\Desktop\数据库2大作业\background\src\main\java\com\daily\model\response" />
+      <recent name="C:\Users\Au_Miner\Desktop\数据库2大作业\background\src\main\java\com\daily\controller" />
+      <recent name="C:\Users\Au_Miner\Desktop\数据库2大作业\background\src\main\java\com\daily\service\Impl" />
+      <recent name="C:\Users\Au_Miner\Desktop\数据库2大作业\background\src\main\java\com\daily\service" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.DailyBackendApplication">
+    <configuration name="DailyBackendApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="daily_backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.daily.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.daily" />
+      <option name="MAIN_CLASS_NAME" value="com.daily.DailyBackendApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DailyBackendApplicationTests.getGroupRecommend" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="daily_backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.daily.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.daily" />
+      <option name="MAIN_CLASS_NAME" value="com.daily.DailyBackendApplicationTests" />
+      <option name="METHOD_NAME" value="getGroupRecommend" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DailyBackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="daily_backend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.daily.DailyBackendApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.DailyBackendApplicationTests.contextLoads" />
+        <item itemvalue="JUnit.DailyBackendApplicationTests.getGroupRecommend" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="208a2709-a213-48fc-aaf0-e083058a0987" name="变更" comment="" />
+      <created>1647589536291</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1647589536291</updated>
+      <workItem from="1647589539673" duration="3625000" />
+      <workItem from="1647593212949" duration="8334000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

@@ -3,14 +3,14 @@ package com.daily.model.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class user_groupExample {
+public class UserGroupDoExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public user_groupExample() {
+    public UserGroupDoExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

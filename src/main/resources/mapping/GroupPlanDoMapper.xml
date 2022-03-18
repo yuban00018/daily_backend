@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.daily.dao.group_planMapper" >
-  <resultMap id="BaseResultMap" type="com.daily.model.entity.group_plan" >
+<mapper namespace="com.daily.dao.GroupPlanDoMapper" >
+  <resultMap id="BaseResultMap" type="com.daily.model.entity.GroupPlanDo" >
     <id column="plan_id" property="planId" jdbcType="INTEGER" />
     <result column="group_id" property="groupId" jdbcType="INTEGER" />
     <result column="content" property="content" jdbcType="VARCHAR" />
@@ -69,7 +69,7 @@
   <sql id="Base_Column_List" >
     plan_id, group_id, content, type, frequency
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.daily.model.entity.group_planExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.daily.model.entity.GroupPlanDoExample" >
     select
     <if test="distinct" >
       distinct
@@ -94,19 +94,19 @@
     delete from group_plan
     where plan_id = #{planId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.daily.model.entity.group_planExample" >
+  <delete id="deleteByExample" parameterType="com.daily.model.entity.GroupPlanDoExample" >
     delete from group_plan
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.daily.model.entity.group_plan" >
+  <insert id="insert" parameterType="com.daily.model.entity.GroupPlanDo" >
     insert into group_plan (plan_id, group_id, content, 
       type, frequency)
     values (#{planId,jdbcType=INTEGER}, #{groupId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
       #{type,jdbcType=VARCHAR}, #{frequency,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.daily.model.entity.group_plan" >
+  <insert id="insertSelective" parameterType="com.daily.model.entity.GroupPlanDo" >
     insert into group_plan
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="planId != null" >
@@ -143,7 +143,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.daily.model.entity.group_planExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.daily.model.entity.GroupPlanDoExample" resultType="java.lang.Integer" >
     select count(*) from group_plan
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -183,7 +183,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.daily.model.entity.group_plan" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.daily.model.entity.GroupPlanDo" >
     update group_plan
     <set >
       <if test="groupId != null" >
@@ -201,7 +201,7 @@
     </set>
     where plan_id = #{planId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.daily.model.entity.group_plan" >
+  <update id="updateByPrimaryKey" parameterType="com.daily.model.entity.GroupPlanDo" >
     update group_plan
     set group_id = #{groupId,jdbcType=INTEGER},
       content = #{content,jdbcType=VARCHAR},

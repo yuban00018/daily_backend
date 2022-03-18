@@ -1,6 +1,6 @@
 package com.daily.model.entity;
 
-public class group {
+public class GroupInfoDo {
     private Integer groupId;
 
     private Integer allexp;
@@ -14,6 +14,8 @@ public class group {
     private Integer memberNumber;
 
     private Integer kind;
+
+    private String groupName;
 
     public Integer getGroupId() {
         return groupId;
@@ -69,5 +71,13 @@ public class group {
 
     public void setKind(Integer kind) {
         this.kind = kind;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName == null ? null : groupName.trim();
     }
 }

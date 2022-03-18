@@ -86,7 +86,6 @@ public class PlanServiceImpl implements PlanService {
             }
             return ResultTool.success(planDoList);
         } else {
-            log.info(user_id+" "+id.toString());
             return ResultTool.error(EmAllException.NOT_AUTHORIZED);
         }
     }

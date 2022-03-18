@@ -41,7 +41,6 @@ public class FinishRateTool {
         Integer day = cal.get(Calendar.DAY_OF_WEEK) - 1;
         if (day == 0) day = 7;
         Date today = new Date();
-        log.info("Start updating finish rate");
         UserDoExample userDoExample = new UserDoExample();
         userDoExample.createCriteria().getAllCriteria();
         List<UserDo> userDoList = userDoMapper.selectByExample(userDoExample);

@@ -1,6 +1,6 @@
 package com.daily.model.entity;
 
-public class group_plan {
+public class GroupPlanDo {
     private Integer planId;
 
     private Integer groupId;
