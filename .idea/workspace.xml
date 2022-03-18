@@ -4,57 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="208a2709-a213-48fc-aaf0-e083058a0987" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/ce49a695-59c8-4cfe-a068-28bdd78d1fe9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/ce49a695-59c8-4cfe-a068-28bdd78d1fe9/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/ce49a695-59c8-4cfe-a068-28bdd78d1fe9/storage_v2/_src_/schema/mysql.osA4Bg.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/ce49a695-59c8-4cfe-a068-28bdd78d1fe9/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/ce49a695-59c8-4cfe-a068-28bdd78d1fe9/storage_v2/_src_/schema/sys.zb4BAA.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/daily/controller/GroupController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/daily/dao/GroupInfoDoMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/daily/dao/GroupPlanDoMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/daily/dao/UserGroupDoMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/UserDoKey.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/UserDoWithBLOBs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/daily/model/response/GroupResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/daily/service/GroupService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/daily/service/Impl/GroupServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/generator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/application_ref.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/databaseStructure/daily.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/generator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/generator_ref.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/dao/groupMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/dao/group_planMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/dao/user_groupMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/exception/EmAllException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/exception/EmAllException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/GroupInfoDo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/groupExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/GroupInfoDoExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/group_plan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/GroupPlanDo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/group_planExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/GroupPlanDoExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/user_group.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/UserGroupDo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/user_groupExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/model/entity/UserGroupDoExample.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/security/MyUserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/security/MyUserDetailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/service/Impl/PlanServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/service/Impl/PlanServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/service/Impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/service/Impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/daily/tools/FinishRateTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/daily/tools/FinishRateTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/groupMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/GroupInfoDoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/group_planMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/GroupPlanDoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/user_groupMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/UserGroupDoMapper.xml" afterDir="false" />
+    <list default="true" id="208a2709-a213-48fc-aaf0-e083058a0987" name="变更" comment="Group表设计，Group功能部分实现">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,8 +127,16 @@
       <option name="presentableId" value="Default" />
       <updated>1647589536291</updated>
       <workItem from="1647589539673" duration="3625000" />
-      <workItem from="1647593212949" duration="8334000" />
+      <workItem from="1647593212949" duration="10268000" />
     </task>
+    <task id="LOCAL-00001" summary="Group表设计，Group功能部分实现">
+      <created>1647614501621</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1647614501621</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,5 +153,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Group表设计，Group功能部分实现" />
+    <option name="LAST_COMMIT_MESSAGE" value="Group表设计，Group功能部分实现" />
   </component>
 </project>
