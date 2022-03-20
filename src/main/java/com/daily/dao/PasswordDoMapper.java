@@ -2,8 +2,9 @@ package com.daily.dao;
 
 import com.daily.model.entity.PasswordDo;
 import com.daily.model.entity.PasswordDoExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PasswordDoMapper {
     int countByExample(PasswordDoExample example);

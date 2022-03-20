@@ -13,6 +13,7 @@ public class GroupResponse {
     private Integer allexp;
     private Integer recexp;
     private Integer leaderId;
+    private String leaderName;
     private String content;
     private Integer memberNumber;
     private Integer kind;

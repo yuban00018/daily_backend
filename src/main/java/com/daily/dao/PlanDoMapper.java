@@ -2,8 +2,9 @@ package com.daily.dao;
 
 import com.daily.model.entity.PlanDo;
 import com.daily.model.entity.PlanDoExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PlanDoMapper {
     int countByExample(PlanDoExample example);

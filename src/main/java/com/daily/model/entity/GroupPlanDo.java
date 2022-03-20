@@ -7,7 +7,7 @@ public class GroupPlanDo {
 
     private String content;
 
-    private String type;
+    private String planName;
 
     private String frequency;
 
@@ -35,12 +35,12 @@ public class GroupPlanDo {
         this.content = content == null ? null : content.trim();
     }
 
-    public String getType() {
-        return type;
+    public String getPlanName() {
+        return planName;
     }
 
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
+    public void setPlanName(String planName) {
+        this.planName = planName == null ? null : planName.trim();
     }
 
     public String getFrequency() {

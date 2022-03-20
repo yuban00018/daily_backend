@@ -2,8 +2,9 @@ package com.daily.dao;
 
 import com.daily.model.entity.UserDo;
 import com.daily.model.entity.UserDoExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UserDoMapper {
     int countByExample(UserDoExample example);

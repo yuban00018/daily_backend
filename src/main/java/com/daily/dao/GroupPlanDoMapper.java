@@ -2,8 +2,9 @@ package com.daily.dao;
 
 import com.daily.model.entity.GroupPlanDo;
 import com.daily.model.entity.GroupPlanDoExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface GroupPlanDoMapper {
     int countByExample(GroupPlanDoExample example);

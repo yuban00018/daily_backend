@@ -2,8 +2,9 @@ package com.daily.dao;
 
 import com.daily.model.entity.FailedTodoDo;
 import com.daily.model.entity.FailedTodoDoExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface FailedTodoDoMapper {
     int countByExample(FailedTodoDoExample example);
