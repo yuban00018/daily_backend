@@ -102,20 +102,20 @@ public class GroupController {
 
     @GetMapping ("/getPlanInfoByPlanId")
     public Result getPlanInfoByPlanId(Integer planId) {
-        log.info("planId: " + planId);
+        // log.info("planId: " + planId);
         return groupService.getPlanInfoByPlanId(planId);
     }
 
     @GetMapping ("/userDelPlanInfo")
     public Result userDelPlanInfo(Integer userId, Integer planId) {
-        log.info("planId: " + planId);
-        log.info("userId: " + userId);
+        // log.info("planId: " + planId);
+        // log.info("userId: " + userId);
         return groupService.userDelPlanInfo(userId, planId);
     }
 
     @PostMapping("/createOrModifyPlanInfo")
     public Result createOrModifyPlanInfo(@Validated @RequestBody GroupPlanInfo groupPlanInfo){
-        log.info(String.valueOf(groupPlanInfo));
+        // log.info(String.valueOf(groupPlanInfo));
         return groupService.createOrModifyPlanInfo(groupPlanInfo);
     }
 }
