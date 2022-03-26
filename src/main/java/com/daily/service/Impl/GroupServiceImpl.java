@@ -225,11 +225,23 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public Result userDoGroupPlan(Integer userId, Integer planId) {
+        if (Integer.parseInt(authTool.getUserId()) != userId)
+            return ResultTool.error(EmAllException.NOT_AUTHORIZED);
         GroupPlanDoExample groupPlanDoExample = new GroupPlanDoExample();
         groupPlanDoExample.createCriteria().andPlanIdEqualTo(planId);
         List<GroupPlanDo> groupPlanDos = groupPlanDoMapper.selectByExample(groupPlanDoExample);
         if (groupPlanDos.isEmpty())
             return ResultTool.error(EmAllException.NO_SUCH_PLAN);
+        int groupId = groupPlanDos.get(0).getGroupId();
+        GroupInfoDoExample groupInfoDoExample = new GroupInfoDoExample();
+        groupInfoDoExample.createCriteria().andGroupIdEqualTo(groupId);
+        List<GroupInfoDo> groupInfoDos = groupInfoDoMapper.selectByExample(groupInfoDoExample);
+        GroupInfoDo groupInfoDo = new GroupInfoDo();
+        groupInfoDo.setGroupId(groupId);
+        groupInfoDo.setAllexp(groupInfoDos.get(0).getAllexp() + 1);
+        groupInfoDo.setRecexp(groupInfoDos.get(0).getRecexp() + 1);
+        if (groupInfoDoMapper.updateByPrimaryKeySelective(groupInfoDo) < 1)
+            return ResultTool.error(EmAllException.DATABASE_ERR);
         UserGroupDoExample userGroupDoExample = new UserGroupDoExample();
         userGroupDoExample.createCriteria().andGroupIdEqualTo(groupPlanDos.get(0).getGroupId()).andUserIdEqualTo(userId);
         List<UserGroupDo> userGroupDos = userGroupDoMapper.selectByExample(userGroupDoExample);
@@ -252,6 +264,23 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public Result userFailGroupPlan(Integer userId, Integer planId) {
+        if (Integer.parseInt(authTool.getUserId()) != userId)
+            return ResultTool.error(EmAllException.NOT_AUTHORIZED);
+        GroupPlanDoExample groupPlanDoExample = new GroupPlanDoExample();
+        groupPlanDoExample.createCriteria().andPlanIdEqualTo(planId);
+        List<GroupPlanDo> groupPlanDos = groupPlanDoMapper.selectByExample(groupPlanDoExample);
+        if (groupPlanDos.isEmpty())
+            return ResultTool.error(EmAllException.NO_SUCH_PLAN);
+        int groupId = groupPlanDos.get(0).getGroupId();
+        GroupInfoDoExample groupInfoDoExample = new GroupInfoDoExample();
+        groupInfoDoExample.createCriteria().andGroupIdEqualTo(groupId);
+        List<GroupInfoDo> groupInfoDos = groupInfoDoMapper.selectByExample(groupInfoDoExample);
+        GroupInfoDo groupInfoDo = new GroupInfoDo();
+        groupInfoDo.setGroupId(groupId);
+        groupInfoDo.setAllexp(groupInfoDos.get(0).getAllexp() - 1);
+        groupInfoDo.setRecexp(groupInfoDos.get(0).getRecexp() - 1);
+        if (groupInfoDoMapper.updateByPrimaryKeySelective(groupInfoDo) < 1)
+            return ResultTool.error(EmAllException.DATABASE_ERR);
         UserPlanRecordDoExample userPlanRecordDoExample = new UserPlanRecordDoExample();
         userPlanRecordDoExample.createCriteria().andPlanIdEqualTo(planId).andUserIdEqualTo(userId);
         UserPlanRecordDo userPlanRecordDo = new UserPlanRecordDo();
