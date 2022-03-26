@@ -8,6 +8,7 @@ import com.daily.model.entity.PasswordDoExample;
 import com.daily.model.entity.UserDo;
 import com.daily.model.entity.UserDoExample;
 import com.daily.model.request.LoginInfo;
+import com.daily.model.request.RegisterInfo;
 import com.daily.model.response.LoginResponse;
 import com.daily.model.response.Result;
 import com.daily.model.response.UserInfoResponse;
@@ -20,6 +21,7 @@ import com.daily.tools.JwtTool;
 import com.daily.tools.ResultTool;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /*
@@ -36,6 +38,35 @@ public class UserServiceImpl implements UserService {
     private UserDoMapper userDoMapper;
     @Resource
     private JwtTool jwtTool;
+
+    @Override
+    public Result register(RegisterInfo registerInfo) {
+        UserDoExample userDoExample = new UserDoExample();
+        userDoExample.createCriteria().andNameEqualTo(registerInfo.getName());
+        List<UserDo> userDoList = userDoMapper.selectByExample(userDoExample);
+        if(userDoList.isEmpty()){
+            UserDo userDo = new UserDo();
+            BeanUtils.copyProperties(registerInfo, userDo);
+            userDo.setSignUpDate(new Date());
+            userDo.setType("User");
+            userDo.setLevel((long)0);
+            userDo.setExp((long)0);
+            userDoMapper.insert(userDo);
+            userDoList = userDoMapper.selectByExample(userDoExample);
+            if(userDoList.isEmpty()){
+                return ResultTool.error(EmAllException.DATABASE_ERR);
+            }else{
+                userDo = userDoList.get(0);
+                PasswordDo passwordDo = new PasswordDo();
+                passwordDo.setPassword(registerInfo.getPassword());
+                passwordDo.setId(userDo.getId());
+                passwordDoMapper.insert(passwordDo);
+                return ResultTool.success();
+            }
+        }else{
+            return ResultTool.error(EmAllException.MULTI_USER);
+        }
+    }
 
     @Override
     public Result login(LoginInfo loginInfo) {

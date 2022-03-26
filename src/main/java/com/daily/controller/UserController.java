@@ -1,6 +1,7 @@
 package com.daily.controller;
 
 import com.daily.model.request.LoginInfo;
+import com.daily.model.request.RegisterInfo;
 import com.daily.model.response.Result;
 import com.daily.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +27,9 @@ public class UserController {
     public Result getInfo(){
         return userService.getInfo();
     }
+
+    @PostMapping("/register")
+    public Result Register(@Validated @RequestBody RegisterInfo registerInfo) {return userService.register(registerInfo);}
 
     @PostMapping("/login")
     public Result Login(@Validated @RequestBody LoginInfo loginInfo){

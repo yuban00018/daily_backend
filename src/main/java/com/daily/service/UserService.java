@@ -1,6 +1,7 @@
 package com.daily.service;
 
 import com.daily.model.request.LoginInfo;
+import com.daily.model.request.RegisterInfo;
 import com.daily.model.response.Result;
 import org.springframework.stereotype.Service;
 
@@ -18,4 +19,5 @@ public interface UserService {
      */
     Result login(LoginInfo loginInfo);
     Result getInfo();
+    Result register(RegisterInfo registerInfo);
 }
