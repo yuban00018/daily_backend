@@ -1,12 +1,8 @@
 package com.daily.service.Impl;
 
-import com.daily.dao.PasswordDoMapper;
-import com.daily.dao.UserDoMapper;
+import com.daily.dao.daily.*;
 import com.daily.exception.EmAllException;
-import com.daily.model.entity.PasswordDo;
-import com.daily.model.entity.PasswordDoExample;
-import com.daily.model.entity.UserDo;
-import com.daily.model.entity.UserDoExample;
+import com.daily.model.entity.daily.*;
 import com.daily.model.request.LoginInfo;
 import com.daily.model.request.RegisterInfo;
 import com.daily.model.response.LoginResponse;
@@ -59,7 +55,7 @@ public class UserServiceImpl implements UserService {
                 userDo = userDoList.get(0);
                 PasswordDo passwordDo = new PasswordDo();
                 passwordDo.setPassword(registerInfo.getPassword());
-                passwordDo.setId(userDo.getId());
+                passwordDo.setUserId(userDo.getUserId());
                 passwordDoMapper.insert(passwordDo);
                 return ResultTool.success();
             }
@@ -76,9 +72,9 @@ public class UserServiceImpl implements UserService {
         if (userDoList.isEmpty()) {
             return ResultTool.error(EmAllException.NO_SUCH_USER);
         } else {
-            Integer id = userDoList.get(0).getId();
+            Integer id = userDoList.get(0).getUserId();
             PasswordDoExample passwordDoExample = new PasswordDoExample();
-            passwordDoExample.createCriteria().andIdEqualTo(id).andPasswordEqualTo(loginInfo.getPassword());
+            passwordDoExample.createCriteria().andUserIdEqualTo(id).andPasswordEqualTo(loginInfo.getPassword());
             List<PasswordDo> passwordDoList = passwordDoMapper.selectByExample(passwordDoExample);
             if (passwordDoList.isEmpty()) {
                 return ResultTool.error(EmAllException.NO_LOGIN_AUTHORIZATION);
@@ -87,7 +83,8 @@ public class UserServiceImpl implements UserService {
             UserDo userDo = userDoList.get(0);
             BeanUtils.copyProperties(userDo,loginResponse);
             //generate token
-            loginResponse.setToken(jwtTool.createJwt(userDo.getId().toString(),userDo.getName()));
+            loginResponse.setToken(jwtTool.createJwt(userDo.getUserId().toString(),userDo.getName()));
+            loginResponse.setId(userDo.getUserId());
             return ResultTool.success(loginResponse);
         }
     }

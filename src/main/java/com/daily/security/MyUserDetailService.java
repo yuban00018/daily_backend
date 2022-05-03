@@ -1,7 +1,7 @@
 package com.daily.security;
 
-import com.daily.dao.UserDoMapper;
-import com.daily.model.entity.UserDo;
+import com.daily.dao.daily.UserDoMapper;
+import com.daily.model.entity.daily.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -36,6 +36,6 @@ public class MyUserDetailService implements UserDetailsService {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         grantedAuthorities.add(new SimpleGrantedAuthority(userDo.getType()));
 
-        return new JwtUser(userDo.getId().toString(), null, userDo.getType(), grantedAuthorities);
+        return new JwtUser(userDo.getUserId().toString(), null, userDo.getType(), grantedAuthorities);
     }
 }

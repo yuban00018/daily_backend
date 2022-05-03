@@ -10,11 +10,10 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <!--数据库链接URL，用户名、密码 -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/daily?characterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai&amp;useLegacyDatetimeCode=false"
-                        userId="root"
-                        password="<YOUR PASSWORD HERE>">
-
+        <jdbcConnection driverClass="org.postgresql.Driver"
+                        connectionURL="jdbc:postgresql://<IP>:5432/daily?currentSchema=daily"
+                        userId="gaussdb"
+                        password="<PWD>">
         </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
@@ -25,7 +24,7 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!-- 生成映射文件的包名和位置-->
-        <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources/">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置-->
@@ -33,28 +32,56 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table tableName="user" domainObjectName="UserDo"
+        <table schema="daily" tableName="user" domainObjectName="UserDo"
                enableCountByExample="true"
                enableUpdateByExample="true"
                enableDeleteByExample="true"
                enableSelectByExample="true"
                selectByExampleQueryId="true"
         />
-        <table tableName="password" domainObjectName="PasswordDo"
+        <table schema="daily" tableName="password" domainObjectName="PasswordDo"
                enableCountByExample="true"
                enableUpdateByExample="true"
                enableDeleteByExample="true"
                enableSelectByExample="true"
                selectByExampleQueryId="true"
         />
-        <table tableName="plan" domainObjectName="PlanDo"
+        <table schema="daily" tableName="plan" domainObjectName="PlanDo"
                enableCountByExample="true"
                enableUpdateByExample="true"
                enableDeleteByExample="true"
                enableSelectByExample="true"
                selectByExampleQueryId="true"
         />
-        <table tableName="failed_todo" domainObjectName="FailedTodoDo"
+        <table schema="daily" tableName="failed_todo" domainObjectName="FailedTodoDo"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"
+        />
+        <table schema="daily" tableName="group_info" domainObjectName="GroupInfoDo"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"
+        />
+        <table schema="daily" tableName="group_plan" domainObjectName="GroupPlanDo"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"
+        />
+        <table schema="daily" tableName="user_group" domainObjectName="UserGroupDo"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"
+        />
+        <table schema="daily" tableName="user_plan_record" domainObjectName="UserPlanRecordDo"
                enableCountByExample="true"
                enableUpdateByExample="true"
                enableDeleteByExample="true"

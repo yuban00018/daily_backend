@@ -41,3 +41,4 @@ build/
 /dataSources/
 /dataSources.local.xml
 /target/
+/src/main/resources/application_tmp.yml
