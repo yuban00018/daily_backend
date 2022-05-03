@@ -414,8 +414,7 @@ public class GroupServiceImpl implements GroupService {
         if (planId == -1) {
             GroupPlanDo groupPlanDo = new GroupPlanDo();
             BeanUtils.copyProperties(groupPlanInfo, groupPlanDo);
-            groupPlanDo.setPlanId(null);
-            if (groupPlanDoMapper.insert(groupPlanDo) < 1)
+            if (groupPlanDoMapper.insertSelective(groupPlanDo) < 1)
                 return ResultTool.error(EmAllException.DATABASE_ERR);
             return ResultTool.success();
         }

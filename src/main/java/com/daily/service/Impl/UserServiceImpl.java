@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
             userDo.setType("User");
             userDo.setLevel((long)0);
             userDo.setExp((long)0);
-            userDoMapper.insert(userDo);
+            userDoMapper.insertSelective(userDo);
             userDoList = userDoMapper.selectByExample(userDoExample);
             if(userDoList.isEmpty()){
                 return ResultTool.error(EmAllException.DATABASE_ERR);
@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
                 PasswordDo passwordDo = new PasswordDo();
                 passwordDo.setPassword(registerInfo.getPassword());
                 passwordDo.setUserId(userDo.getUserId());
-                passwordDoMapper.insert(passwordDo);
+                passwordDoMapper.insertSelective(passwordDo);
                 return ResultTool.success();
             }
         }else{
