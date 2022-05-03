@@ -47,6 +47,5 @@ public class UserTest {
         UserDo userDo = userDoMapper.selectByPrimaryKey(id);
         UserInfoResponse userInfoResponse = new UserInfoResponse();
         BeanUtils.copyProperties(userDo, userInfoResponse);
-        log.info(userInfoResponse.getUserId().toString());
     }
 }
