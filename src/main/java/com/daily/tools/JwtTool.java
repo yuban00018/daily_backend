@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -95,7 +96,12 @@ public class JwtTool {
         if (userDo == null) {
             return TOKEN_FAKE_EXCEPTION;
         }
-        String name = URLDecoder.decode(decodedJWT.getClaim("name").asString(), StandardCharsets.UTF_8);
+        String name = null;
+        try {
+            name = URLDecoder.decode(decodedJWT.getClaim("name").asString(), String.valueOf(StandardCharsets.UTF_8));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         if (name.equals(userDo.getName())){
             return TOKEN_VALID;
         } else {

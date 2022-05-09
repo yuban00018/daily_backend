@@ -40,4 +40,6 @@ public interface GroupService {
     Result userDelPlanInfo(Integer userId, Integer planId);
 
     Result createOrModifyPlanInfo(GroupPlanInfo groupPlanInfo);
+
+    Result getGroupRank();
 }

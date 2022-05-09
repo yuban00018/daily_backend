@@ -7,6 +7,8 @@ import com.daily.model.request.UpdatePlanInfo;
 import com.daily.service.GroupService;
 import lombok.extern.slf4j.Slf4j;
 import com.daily.model.response.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +26,9 @@ import javax.annotation.Resource;
 public class GroupController {
     @Resource
     GroupService groupService;
+
+    @Autowired
+    KafkaTemplate<String, String> kafka;
 
     @PostMapping ("/groupRecommend")
     public Result getGroupRecommend() {
@@ -118,4 +123,11 @@ public class GroupController {
         // log.info(String.valueOf(groupPlanInfo));
         return groupService.createOrModifyPlanInfo(groupPlanInfo);
     }
+
+
+    @GetMapping ("/getGroupRank")
+    public Result getGroupRank() {
+        return groupService.getGroupRank();
+    }
+
 }

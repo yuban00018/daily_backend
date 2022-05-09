@@ -6,6 +6,7 @@ import com.daily.model.entity.*;
 import com.daily.model.request.GroupInfo;
 import com.daily.model.request.GroupPlanInfo;
 import com.daily.model.response.GroupPlanResponse;
+import com.daily.model.response.GroupRankResponse;
 import com.daily.model.response.GroupResponse;
 import com.daily.model.response.Result;
 import com.daily.service.GroupService;
@@ -13,10 +14,14 @@ import com.daily.tools.AuthTool;
 import com.daily.tools.ResultTool;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,6 +51,12 @@ public class GroupServiceImpl implements GroupService {
 
     @Resource
     private UserPlanRecordDoMapper userPlanRecordDoMapper;
+
+    @Autowired
+    KafkaTemplate<String, String> kafka;
+
+    @Resource
+    private GroupRankDoMapper groupRankDoMapper;
 
     @Override
     public Result getGroupRecommend() {
@@ -259,6 +270,7 @@ public class GroupServiceImpl implements GroupService {
             userPlanRecordDoMapper.insertSelective(userPlanRecordDo);
         else
             userPlanRecordDoMapper.updateByPrimaryKeySelective(userPlanRecordDo);
+        kafka.send("first", "",groupId + " 1");
         return ResultTool.success();
     }
 
@@ -287,8 +299,10 @@ public class GroupServiceImpl implements GroupService {
         userPlanRecordDo.setType("off");
         if (userPlanRecordDoMapper.updateByExampleSelective(userPlanRecordDo, userPlanRecordDoExample) == 0)
             return ResultTool.error(EmAllException.DATABASE_ERR);
-        else
+        else {
+            kafka.send("first", "",groupId + " 0");
             return ResultTool.success();
+        }
     }
 
 
@@ -460,5 +474,35 @@ public class GroupServiceImpl implements GroupService {
                 return ResultTool.error(EmAllException.DATABASE_ERR);
             return ResultTool.success();
         }
+    }
+
+    @Override
+    public Result getGroupRank() {
+        GroupRankDoExample groupRankDoExample = new GroupRankDoExample();
+        groupRankDoExample.createCriteria().getAllCriteria();
+        List<GroupRankDo> groupRankDos = groupRankDoMapper.selectByExample(groupRankDoExample);
+        List<GroupRankResponse> res = new ArrayList<>();
+        for (GroupRankDo groupRankDo : groupRankDos) {
+            GroupRankResponse tmp = new GroupRankResponse();
+            tmp.setGroupId(groupRankDo.getGroupId());
+            tmp.setRank(groupRankDo.getRnk());
+            GroupInfoDoExample groupInfoDoExample = new GroupInfoDoExample();
+            groupInfoDoExample.createCriteria().andGroupIdEqualTo(groupRankDo.getGroupId());
+            List<GroupInfoDo> groupInfoDos = groupInfoDoMapper.selectByExample(groupInfoDoExample);
+            if (groupInfoDos.isEmpty())
+                return ResultTool.error(EmAllException.NO_SUCH_GROUP);
+            tmp.setGroupName(groupInfoDos.get(0).getGroupName());
+            Integer leaderId = groupInfoDos.get(0).getLeaderId();
+            tmp.setGroupExp(groupInfoDos.get(0).getAllexp());
+            UserDoExample userDoExample = new UserDoExample();
+            userDoExample.createCriteria().andIdEqualTo(leaderId);
+            List<UserDo> userDos = userDoMapper.selectByExample(userDoExample);
+            if (userDos.isEmpty())
+                return ResultTool.error(EmAllException.NO_SUCH_USER);
+            tmp.setAdminName(userDos.get(0).getName());
+            res.add(tmp);
+            // log.info("tmp: " + tmp);
+        }
+        return ResultTool.success(res);
     }
 }

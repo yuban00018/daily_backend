@@ -81,5 +81,19 @@
                enableSelectByExample="true"
                selectByExampleQueryId="true"
         />
+        <table tableName="user_plan_record" domainObjectName="UserPlanRecordDo"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"
+        />
+        <table tableName="group_rank" domainObjectName="GroupRankDo"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"
+        />
     </context>
 </generatorConfiguration>
