@@ -1,9 +1,9 @@
 package com.daily.tools;
 
-import com.daily.dao.FailedTodoDoMapper;
-import com.daily.dao.PlanDoMapper;
-import com.daily.dao.UserDoMapper;
-import com.daily.model.entity.*;
+
+import com.daily.dao.daily.PlanDoMapper;
+import com.daily.dao.daily.UserDoMapper;
+import com.daily.model.entity.daily.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -23,9 +23,9 @@ import java.util.List;
 @Component
 public class FinishRateTool {
     @Resource
-    FailedTodoDoMapper failedTodoDoMapper;
+    com.daily.dao.daily.FailedTodoDoMapper failedTodoDoMapper;
     @Resource
-    PlanDoMapper planDoMapper;
+    com.daily.dao.daily.PlanDoMapper planDoMapper;
     @Resource
     UserDoMapper userDoMapper;
 
@@ -48,7 +48,7 @@ public class FinishRateTool {
         // 遍历用户
         for (UserDo userDo:userDoList) {
             PlanDoExample planDoExample = new PlanDoExample();
-            planDoExample.createCriteria().andUserIdEqualTo(userDo.getId()).andTypeEqualTo("on");
+            planDoExample.createCriteria().andUserIdEqualTo(userDo.getUserId()).andTypeEqualTo("on");
             List<PlanDo> planDoList = planDoMapper.selectByExample(planDoExample);
             if (planDoList == null) return;
             int sum = 0;
@@ -75,7 +75,7 @@ public class FinishRateTool {
                 FailedTodoDo failedTodoDo = new FailedTodoDo();
                 failedTodoDo.setFaileDate(today);
                 failedTodoDo.setRate((float) (finish * 100 / sum));
-                failedTodoDo.setUserId(userDo.getId());
+                failedTodoDo.setUserId(userDo.getUserId());
                 failedTodoDoMapper.insertSelective(failedTodoDo);
             }
         };

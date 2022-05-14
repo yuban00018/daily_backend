@@ -19,7 +19,7 @@ public class KafkaController {
     @Resource
     KafkaService kafkaService;
 
-    @KafkaListener(topics = "second")
+    @KafkaListener(topics = "groupExpChangeKafka")
     public void consumerTopic(String msg) {
         // log.info("kafka:" + msg);
         if (!msg.isEmpty())

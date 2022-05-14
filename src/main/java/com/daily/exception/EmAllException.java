@@ -17,6 +17,7 @@ public enum EmAllException implements CommonError{
     TOKEN_ERROR(403,"TOKEN错误"),
     NOT_AUTHORIZED(403,"无权限"),
     DATABASE_ERR(405,"数据库错误"),
+    USER_IN_BLACK_LIST(405,"用户被封"),
     ;
 
     // 错误码

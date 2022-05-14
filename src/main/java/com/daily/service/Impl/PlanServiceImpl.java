@@ -1,9 +1,8 @@
 package com.daily.service.Impl;
 
-import com.daily.dao.PlanDoMapper;
+import com.daily.dao.daily.PlanDoMapper;
 import com.daily.exception.EmAllException;
-import com.daily.model.entity.PlanDo;
-import com.daily.model.entity.PlanDoExample;
+import com.daily.model.entity.daily.*;
 import com.daily.model.request.PlanInfo;
 import com.daily.model.request.UpdatePlanInfo;
 import com.daily.model.response.Result;

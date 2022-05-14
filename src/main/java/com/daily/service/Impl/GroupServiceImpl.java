@@ -1,8 +1,8 @@
 package com.daily.service.Impl;
 
-import com.daily.dao.*;
+import com.daily.dao.daily.*;
 import com.daily.exception.EmAllException;
-import com.daily.model.entity.*;
+import com.daily.model.entity.daily.*;
 import com.daily.model.request.GroupInfo;
 import com.daily.model.request.GroupPlanInfo;
 import com.daily.model.response.GroupPlanResponse;
@@ -82,7 +82,7 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public Result getGroupInfoById(Integer id) {
         UserDoExample userDoExample = new UserDoExample();
-        userDoExample.createCriteria().andIdEqualTo(id);
+        userDoExample.createCriteria().andUserIdEqualTo(id);
         List<UserDo> userDos = userDoMapper.selectByExample(userDoExample);
         if (userDos.isEmpty())
             return ResultTool.error(EmAllException.NO_SUCH_USER);
@@ -156,7 +156,7 @@ public class GroupServiceImpl implements GroupService {
         BeanUtils.copyProperties(groupDoList.get(0), groupResponse);
 
         UserDoExample userDoExample = new UserDoExample();
-        userDoExample.createCriteria().andIdEqualTo(groupResponse.getLeaderId());
+        userDoExample.createCriteria().andUserIdEqualTo(groupResponse.getLeaderId());
         List<UserDo> userDos = userDoMapper.selectByExample(userDoExample);
         if (userDos.isEmpty()) {
             return ResultTool.error(EmAllException.NO_SUCH_USER);
@@ -270,7 +270,8 @@ public class GroupServiceImpl implements GroupService {
             userPlanRecordDoMapper.insertSelective(userPlanRecordDo);
         else
             userPlanRecordDoMapper.updateByPrimaryKeySelective(userPlanRecordDo);
-        kafka.send("first", "",groupId + " 1");
+        kafka.send("userDoGroupJobKafka", "",groupId + " 1");
+        kafka.send("blackListKafka", "", String.valueOf(userId));
         return ResultTool.success();
     }
 
@@ -300,7 +301,8 @@ public class GroupServiceImpl implements GroupService {
         if (userPlanRecordDoMapper.updateByExampleSelective(userPlanRecordDo, userPlanRecordDoExample) == 0)
             return ResultTool.error(EmAllException.DATABASE_ERR);
         else {
-            kafka.send("first", "",groupId + " 0");
+            kafka.send("userDoGroupJobKafka", "",groupId + " 0");
+            kafka.send("blackListKafka", "", String.valueOf(userId));
             return ResultTool.success();
         }
     }
@@ -309,7 +311,7 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public Result userPossessGroupInfo(Integer userId) {
         UserDoExample userDoExample = new UserDoExample();
-        userDoExample.createCriteria().andIdEqualTo(userId);
+        userDoExample.createCriteria().andUserIdEqualTo(userId);
         List<UserDo> userDos = userDoMapper.selectByExample(userDoExample);
         if (userDos.isEmpty())
             return ResultTool.error(EmAllException.NO_SUCH_USER);
@@ -356,7 +358,7 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public Result createOrModifyGroupInfo(GroupInfo groupInfo) {
         UserDoExample userDoExample = new UserDoExample();
-        userDoExample.createCriteria().andIdEqualTo(groupInfo.getLeaderId());
+        userDoExample.createCriteria().andUserIdEqualTo(groupInfo.getLeaderId());
         List<UserDo> userDos = userDoMapper.selectByExample(userDoExample);
         if (userDos.isEmpty())
             return ResultTool.error(EmAllException.NO_SUCH_USER);
@@ -458,7 +460,7 @@ public class GroupServiceImpl implements GroupService {
             GroupPlanDo groupPlanDo = new GroupPlanDo();
             BeanUtils.copyProperties(groupPlanInfo, groupPlanDo);
             groupPlanDo.setPlanId(null);
-            if (groupPlanDoMapper.insert(groupPlanDo) < 1)
+            if (groupPlanDoMapper.insertSelective(groupPlanDo) < 1)
                 return ResultTool.error(EmAllException.DATABASE_ERR);
             return ResultTool.success();
         }
@@ -495,7 +497,7 @@ public class GroupServiceImpl implements GroupService {
             Integer leaderId = groupInfoDos.get(0).getLeaderId();
             tmp.setGroupExp(groupInfoDos.get(0).getAllexp());
             UserDoExample userDoExample = new UserDoExample();
-            userDoExample.createCriteria().andIdEqualTo(leaderId);
+            userDoExample.createCriteria().andUserIdEqualTo(leaderId);
             List<UserDo> userDos = userDoMapper.selectByExample(userDoExample);
             if (userDos.isEmpty())
                 return ResultTool.error(EmAllException.NO_SUCH_USER);

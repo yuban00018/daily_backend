@@ -1,16 +1,13 @@
 package com.daily.service.Impl;
 
-import com.daily.dao.FailedTodoDoMapper;
-import com.daily.model.entity.FailedTodoDo;
-import com.daily.model.entity.FailedTodoDoExample;
+import com.daily.dao.daily.FailedTodoDoMapper;
+import com.daily.model.entity.daily.*;
 import com.daily.model.response.RecentRateResponse;
 import com.daily.model.response.Result;
 import com.daily.service.StatisticService;
 import com.daily.tools.AuthTool;
 import com.daily.tools.ResultTool;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

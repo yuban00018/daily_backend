@@ -4,6 +4,7 @@ import com.daily.model.request.LoginInfo;
 import com.daily.model.response.Result;
 import com.daily.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.mortbay.log.Log;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +30,8 @@ public class UserController {
 
     @PostMapping("/login")
     public Result Login(@Validated @RequestBody LoginInfo loginInfo){
+        log.info("UserName: " + loginInfo.getName());
+        log.info("UserPassword: " + loginInfo.getPassword());
         return userService.login(loginInfo);
     }
 }

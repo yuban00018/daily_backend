@@ -1,10 +1,11 @@
 package com.daily.tools;
 
 
-import com.daily.dao.UserDoMapper;
+
+import com.daily.dao.daily.*;
 import com.daily.exception.AllException;
 import com.daily.exception.EmAllException;
-import com.daily.model.entity.UserDo;
+import com.daily.model.entity.daily.UserDo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;

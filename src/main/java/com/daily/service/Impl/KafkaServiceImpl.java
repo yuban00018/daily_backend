@@ -1,9 +1,8 @@
 package com.daily.service.Impl;
 
-import com.daily.dao.GroupRankDoMapper;
+import com.daily.dao.daily.GroupRankDoMapper;
 import com.daily.exception.EmAllException;
-import com.daily.model.entity.GroupRankDo;
-import com.daily.model.entity.GroupRankDoExample;
+import com.daily.model.entity.daily.*;
 import com.daily.model.response.Result;
 import com.daily.service.KafkaService;
 import com.daily.tools.ResultTool;

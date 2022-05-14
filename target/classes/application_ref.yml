@@ -5,13 +5,13 @@ server:
 
 spring:
         datasource:
-                driver-class-name: com.mysql.cj.jdbc.Driver
-                username: root
-                password: <YOUR PASSWORD HERE>
-                url: jdbc:mysql://localhost:3306/daily?characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&useLegacyDatetimeCode=false
+                url: jdbc:postgresql://IP:5432/daily?currentSchema=daily
+                username: gaussdb
+                password: PWD
+                driverClassName: org.postgresql.Driver
 
 mybatis:
-        mapper-locations: classpath:mapping/*.xml
+        mapper-locations: classpath:mapping/daily/*.xml
         type-aliases-package: com.daily.model.entity
 
 ENCODE_KEY: <YOUR ENCODE KEY HERE>

@@ -1,12 +1,10 @@
 package com.daily.service.Impl;
 
-import com.daily.dao.PasswordDoMapper;
-import com.daily.dao.UserDoMapper;
+import com.daily.dao.daily.BlackListDoMapper;
+import com.daily.dao.daily.PasswordDoMapper;
+import com.daily.dao.daily.UserDoMapper;
 import com.daily.exception.EmAllException;
-import com.daily.model.entity.PasswordDo;
-import com.daily.model.entity.PasswordDoExample;
-import com.daily.model.entity.UserDo;
-import com.daily.model.entity.UserDoExample;
+import com.daily.model.entity.daily.*;
 import com.daily.model.request.LoginInfo;
 import com.daily.model.response.LoginResponse;
 import com.daily.model.response.Result;
@@ -36,6 +34,8 @@ public class UserServiceImpl implements UserService {
     private UserDoMapper userDoMapper;
     @Resource
     private JwtTool jwtTool;
+    @Resource
+    private BlackListDoMapper blackListDoMapper;
 
     @Override
     public Result login(LoginInfo loginInfo) {
@@ -45,18 +45,24 @@ public class UserServiceImpl implements UserService {
         if (userDoList.isEmpty()) {
             return ResultTool.error(EmAllException.NO_SUCH_USER);
         } else {
-            Integer id = userDoList.get(0).getId();
+            Integer id = userDoList.get(0).getUserId();
             PasswordDoExample passwordDoExample = new PasswordDoExample();
-            passwordDoExample.createCriteria().andIdEqualTo(id).andPasswordEqualTo(loginInfo.getPassword());
+            passwordDoExample.createCriteria().andUserIdEqualTo(id).andPasswordEqualTo(loginInfo.getPassword());
             List<PasswordDo> passwordDoList = passwordDoMapper.selectByExample(passwordDoExample);
             if (passwordDoList.isEmpty()) {
                 return ResultTool.error(EmAllException.NO_LOGIN_AUTHORIZATION);
             }
+            BlackListDoExample blackListDoExample = new BlackListDoExample();
+            blackListDoExample.createCriteria().andUserIdEqualTo(userDoList.get(0).getUserId());
+            List<BlackListDo> blackListDos = blackListDoMapper.selectByExample(blackListDoExample);
+            if (!blackListDos.isEmpty())
+                return ResultTool.error(EmAllException.USER_IN_BLACK_LIST);
             LoginResponse loginResponse = new LoginResponse();
             UserDo userDo = userDoList.get(0);
             BeanUtils.copyProperties(userDo,loginResponse);
             //generate token
-            loginResponse.setToken(jwtTool.createJwt(userDo.getId().toString(),userDo.getName()));
+            loginResponse.setToken(jwtTool.createJwt(userDo.getUserId().toString(),userDo.getName()));
+            loginResponse.setId(userDo.getUserId());
             return ResultTool.success(loginResponse);
         }
     }
