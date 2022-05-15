@@ -58,6 +58,9 @@ public class GroupServiceImpl implements GroupService {
     @Resource
     private GroupRankDoMapper groupRankDoMapper;
 
+    @Resource
+    private BlackListDoMapper blackListDoMapper;
+
     @Override
     public Result getGroupRecommend() {
         GroupInfoDoExample groupDoExample = new GroupInfoDoExample();
@@ -220,6 +223,17 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public Result userExitGroup(Integer userId, Integer groupId) {
+        if (!Objects.equals(authTool.getUserId(), userId.toString()))
+            return ResultTool.error(EmAllException.NOT_AUTHORIZED);
+
+        GroupInfoDoExample groupInfoDoExample = new GroupInfoDoExample();
+        groupInfoDoExample.createCriteria().andGroupIdEqualTo(groupId);
+        List<GroupInfoDo> groupInfoDos = groupInfoDoMapper.selectByExample(groupInfoDoExample);
+        if (groupInfoDos.isEmpty())
+            return ResultTool.error(EmAllException.NO_SUCH_GROUP);
+        else if (Objects.equals(groupInfoDos.get(0).getLeaderId(), userId))
+            return ResultTool.error(EmAllException.LEADER_CANT_EXIT_GROUP);
+
         UserGroupDoExample userGroupDoExample = new UserGroupDoExample();
         userGroupDoExample.createCriteria().andUserIdEqualTo(userId).andGroupIdEqualTo(groupId);
         if (userGroupDoMapper.deleteByExample(userGroupDoExample) > 0) {
@@ -238,26 +252,52 @@ public class GroupServiceImpl implements GroupService {
     public Result userDoGroupPlan(Integer userId, Integer planId) {
         if (Integer.parseInt(authTool.getUserId()) != userId)
             return ResultTool.error(EmAllException.NOT_AUTHORIZED);
+
+
         GroupPlanDoExample groupPlanDoExample = new GroupPlanDoExample();
         groupPlanDoExample.createCriteria().andPlanIdEqualTo(planId);
         List<GroupPlanDo> groupPlanDos = groupPlanDoMapper.selectByExample(groupPlanDoExample);
         if (groupPlanDos.isEmpty())
             return ResultTool.error(EmAllException.NO_SUCH_PLAN);
+
+
+        UserGroupDoExample userGroupDoExample = new UserGroupDoExample();
+        userGroupDoExample.createCriteria().andGroupIdEqualTo(groupPlanDos.get(0).getGroupId()).andUserIdEqualTo(userId);
+        List<UserGroupDo> userGroupDos = userGroupDoMapper.selectByExample(userGroupDoExample);
+        if (userGroupDos.isEmpty())
+            return ResultTool.error(EmAllException.USER_NOT_JOINED_GROUP);
+
+
+        BlackListDoExample blackListDoExample = new BlackListDoExample();
+        blackListDoExample.createCriteria().andUserIdEqualTo(userId);
+        List<BlackListDo> blackListDos = blackListDoMapper.selectByExample(blackListDoExample);
+        if (!blackListDos.isEmpty())
+            return ResultTool.error(EmAllException.USER_IN_BLACK_LIST);
+
+
+        UserPlanRecordDoExample userPlanRecordDoExample1 = new UserPlanRecordDoExample();
+        userPlanRecordDoExample1.createCriteria().andUserIdEqualTo(userId).andPlanIdEqualTo(planId);
+        List<UserPlanRecordDo> userPlanRecordDos1 = userPlanRecordDoMapper.selectByExample(userPlanRecordDoExample1);
+        int mark = 1;
+        if (!userPlanRecordDos1.isEmpty()) {
+            if (Objects.equals(userPlanRecordDos1.get(0).getType(), "on"))
+                mark = 0;
+        }
+
+
         int groupId = groupPlanDos.get(0).getGroupId();
         GroupInfoDoExample groupInfoDoExample = new GroupInfoDoExample();
         groupInfoDoExample.createCriteria().andGroupIdEqualTo(groupId);
         List<GroupInfoDo> groupInfoDos = groupInfoDoMapper.selectByExample(groupInfoDoExample);
         GroupInfoDo groupInfoDo = new GroupInfoDo();
         groupInfoDo.setGroupId(groupId);
-        groupInfoDo.setAllexp(groupInfoDos.get(0).getAllexp() + 1);
-        groupInfoDo.setRecexp(groupInfoDos.get(0).getRecexp() + 1);
+        groupInfoDo.setAllexp(groupInfoDos.get(0).getAllexp() + mark);
+        groupInfoDo.setRecexp(groupInfoDos.get(0).getRecexp() + mark);
         if (groupInfoDoMapper.updateByPrimaryKeySelective(groupInfoDo) < 1)
             return ResultTool.error(EmAllException.DATABASE_ERR);
-        UserGroupDoExample userGroupDoExample = new UserGroupDoExample();
-        userGroupDoExample.createCriteria().andGroupIdEqualTo(groupPlanDos.get(0).getGroupId()).andUserIdEqualTo(userId);
-        List<UserGroupDo> userGroupDos = userGroupDoMapper.selectByExample(userGroupDoExample);
-        if (userGroupDos.isEmpty())
-            return ResultTool.error(EmAllException.USER_NOT_JOINED_GROUP);
+        else
+            log.info("用户完成小组任务，小组" + groupId + "经验+1");
+
         UserPlanRecordDoExample userPlanRecordDoExample = new UserPlanRecordDoExample();
         userPlanRecordDoExample.createCriteria().andUserIdEqualTo(userId).andPlanIdEqualTo(planId);
         List<UserPlanRecordDo> userPlanRecordDos = userPlanRecordDoMapper.selectByExample(userPlanRecordDoExample);
@@ -279,21 +319,53 @@ public class GroupServiceImpl implements GroupService {
     public Result userFailGroupPlan(Integer userId, Integer planId) {
         if (Integer.parseInt(authTool.getUserId()) != userId)
             return ResultTool.error(EmAllException.NOT_AUTHORIZED);
+
+
         GroupPlanDoExample groupPlanDoExample = new GroupPlanDoExample();
         groupPlanDoExample.createCriteria().andPlanIdEqualTo(planId);
         List<GroupPlanDo> groupPlanDos = groupPlanDoMapper.selectByExample(groupPlanDoExample);
         if (groupPlanDos.isEmpty())
             return ResultTool.error(EmAllException.NO_SUCH_PLAN);
+
+
+        UserGroupDoExample userGroupDoExample = new UserGroupDoExample();
+        userGroupDoExample.createCriteria().andGroupIdEqualTo(groupPlanDos.get(0).getGroupId()).andUserIdEqualTo(userId);
+        List<UserGroupDo> userGroupDos = userGroupDoMapper.selectByExample(userGroupDoExample);
+        if (userGroupDos.isEmpty())
+            return ResultTool.error(EmAllException.USER_NOT_JOINED_GROUP);
+
+
+        BlackListDoExample blackListDoExample = new BlackListDoExample();
+        blackListDoExample.createCriteria().andUserIdEqualTo(userId);
+        List<BlackListDo> blackListDos = blackListDoMapper.selectByExample(blackListDoExample);
+        if (!blackListDos.isEmpty())
+            return ResultTool.error(EmAllException.USER_IN_BLACK_LIST);
+
+
+        UserPlanRecordDoExample userPlanRecordDoExample1 = new UserPlanRecordDoExample();
+        userPlanRecordDoExample1.createCriteria().andUserIdEqualTo(userId).andPlanIdEqualTo(planId);
+        List<UserPlanRecordDo> userPlanRecordDos1 = userPlanRecordDoMapper.selectByExample(userPlanRecordDoExample1);
+        int mark = 1;
+        if (!userPlanRecordDos1.isEmpty()) {
+            if (Objects.equals(userPlanRecordDos1.get(0).getType(), "off"))
+                mark = 0;
+        }
+
+
         int groupId = groupPlanDos.get(0).getGroupId();
         GroupInfoDoExample groupInfoDoExample = new GroupInfoDoExample();
         groupInfoDoExample.createCriteria().andGroupIdEqualTo(groupId);
         List<GroupInfoDo> groupInfoDos = groupInfoDoMapper.selectByExample(groupInfoDoExample);
         GroupInfoDo groupInfoDo = new GroupInfoDo();
         groupInfoDo.setGroupId(groupId);
-        groupInfoDo.setAllexp(groupInfoDos.get(0).getAllexp() - 1);
-        groupInfoDo.setRecexp(groupInfoDos.get(0).getRecexp() - 1);
+        groupInfoDo.setAllexp(groupInfoDos.get(0).getAllexp() - mark);
+        groupInfoDo.setRecexp(groupInfoDos.get(0).getRecexp() - mark);
         if (groupInfoDoMapper.updateByPrimaryKeySelective(groupInfoDo) < 1)
             return ResultTool.error(EmAllException.DATABASE_ERR);
+        else
+            log.info("用户取消小组任务，小组" + groupId + "经验-1");
+
+
         UserPlanRecordDoExample userPlanRecordDoExample = new UserPlanRecordDoExample();
         userPlanRecordDoExample.createCriteria().andPlanIdEqualTo(planId).andUserIdEqualTo(userId);
         UserPlanRecordDo userPlanRecordDo = new UserPlanRecordDo();

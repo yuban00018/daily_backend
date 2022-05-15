@@ -33,7 +33,7 @@ public class KafkaServiceImpl implements KafkaService {
         for (int i = 0; i < arr.length; i++) {
             groupRankDo.setGroupId(Integer.parseInt(arr[i]));
             groupRankDo.setRnk(i + 1);
-            log.info("正在存: " + arr[i] + " " + (i + 1));
+            // log.info("正在存: " + arr[i] + " " + (i + 1));
             if (groupRankDoMapper.insertSelective(groupRankDo) < 1) {
                 return ResultTool.error(EmAllException.DATABASE_ERR);
             }
