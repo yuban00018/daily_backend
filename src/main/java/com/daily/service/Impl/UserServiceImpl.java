@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
                 userDo = userDoList.get(0);
                 PasswordDo passwordDo = new PasswordDo();
                 passwordDo.setPassword(registerInfo.getPassword());
-                passwordDo.setId(userDo.getId());
+                passwordDo.setUserId(userDo.getUserId());
                 passwordDoMapper.insert(passwordDo);
                 return ResultTool.success();
             }
