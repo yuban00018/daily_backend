@@ -19,6 +19,7 @@ public enum EmAllException implements CommonError{
     DATABASE_ERR(405,"数据库错误"),
     USER_IN_BLACK_LIST(406,"用户被封"),
     LEADER_CANT_EXIT_GROUP(405,"组长无法退出小组"),
+    MULTI_USER(403,"重复的用户")
     ;
 
     // 错误码

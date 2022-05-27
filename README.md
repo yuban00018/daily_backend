@@ -1,6 +1,10 @@
 # 说明
 
-日程管理后台，数据库课程作业，也作为工具日常使用。
+日程管理后台，数据库课程项目。
+
+有一个使用OpenGauss的分支，可供需要使用OpenGauss做校内项目的同学参考。
+
+slave分支为spark集群+Open Gauss版本
 
 # 如何运行
 
@@ -9,3 +13,5 @@
 # 联系我
 
 可以提Issues或者发送邮件到caozhuowen2013@outlook.com
+
+slave分支主要维护者为[Auminer](https://github.com/Au-Miner)
