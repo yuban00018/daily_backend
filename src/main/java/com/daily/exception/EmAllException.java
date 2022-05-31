@@ -8,6 +8,7 @@ package com.daily.exception;
 public enum EmAllException implements CommonError{
     NO_LOGIN_AUTHORIZATION(403, "没有登录权限"),
     NO_SUCH_USER(403, "用户不存在"),
+    MULTI_USER(403,"重复的用户"),
     NO_SUCH_GROUP(403, "小组不存在"),
     NO_SUCH_PLAN(403, "小组任务不存在"),
     USER_HAVEN_JOINED_GROUP(403, "用户已经加入小组"),
@@ -18,8 +19,7 @@ public enum EmAllException implements CommonError{
     NOT_AUTHORIZED(403,"无权限"),
     DATABASE_ERR(405,"数据库错误"),
     USER_IN_BLACK_LIST(406,"用户被封"),
-    LEADER_CANT_EXIT_GROUP(405,"组长无法退出小组"),
-    MULTI_USER(403,"重复的用户")
+    LEADER_CANT_EXIT_GROUP(405,"组长无法退出小组")
     ;
 
     // 错误码

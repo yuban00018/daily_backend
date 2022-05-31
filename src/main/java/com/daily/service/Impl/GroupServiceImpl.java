@@ -508,8 +508,10 @@ public class GroupServiceImpl implements GroupService {
             return ResultTool.error(EmAllException.NOT_AUTHORIZED);
         UserPlanRecordDoExample userPlanRecordDoExample = new UserPlanRecordDoExample();
         userPlanRecordDoExample.createCriteria().andPlanIdEqualTo(planId);
-        if (userPlanRecordDoMapper.deleteByExample(userPlanRecordDoExample) < 1)
-            return ResultTool.error(EmAllException.DATABASE_ERR);
+        List<UserPlanRecordDo> userPlanRecordDos = userPlanRecordDoMapper.selectByExample(userPlanRecordDoExample);
+        if (!userPlanRecordDos.isEmpty())
+            if (userPlanRecordDoMapper.deleteByExample(userPlanRecordDoExample) < 1)
+                return ResultTool.error(EmAllException.DATABASE_ERR);
         if (groupPlanDoMapper.deleteByExample(groupPlanDoExample) < 1)
             return ResultTool.error(EmAllException.DATABASE_ERR);
         return ResultTool.success();

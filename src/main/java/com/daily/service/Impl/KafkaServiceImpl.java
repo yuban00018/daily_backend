@@ -1,5 +1,6 @@
 package com.daily.service.Impl;
 
+import com.daily.dao.daily.GroupInfoDoMapper;
 import com.daily.dao.daily.GroupRankDoMapper;
 import com.daily.exception.EmAllException;
 import com.daily.model.entity.daily.*;
@@ -10,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.sql.Array;
+import java.util.List;
 
 /***
  * Au_Miner
@@ -23,6 +26,9 @@ public class KafkaServiceImpl implements KafkaService {
     @Resource
     private GroupRankDoMapper groupRankDoMapper;
 
+    @Resource
+    private GroupInfoDoMapper groupInfoDoMapper;
+
     @Override
     public Result getGroupRank(String str) {
         GroupRankDoExample groupRankDoExample = new GroupRankDoExample();
@@ -30,8 +36,18 @@ public class KafkaServiceImpl implements KafkaService {
         groupRankDoMapper.deleteByExample(groupRankDoExample);
         String[] arr = str.split(" ");
         GroupRankDo groupRankDo = new GroupRankDo();
+        int[] arr1 = new int[10];
+        int geshu = 0;
         for (int i = 0; i < arr.length; i++) {
-            groupRankDo.setGroupId(Integer.parseInt(arr[i]));
+            GroupInfoDoExample groupInfoDoExample = new GroupInfoDoExample();
+            groupInfoDoExample.createCriteria().andGroupIdEqualTo(Integer.valueOf(arr[i]));
+            List<GroupInfoDo> groupInfoDos = groupInfoDoMapper.selectByExample(groupInfoDoExample);
+            if (groupInfoDos.isEmpty())
+                continue;
+            arr1[geshu++] = Integer.parseInt(arr[i]);
+        }
+        for (int i = 0; i < geshu; i++) {
+            groupRankDo.setGroupId(arr1[i]);
             groupRankDo.setRnk(i + 1);
             // log.info("正在存: " + arr[i] + " " + (i + 1));
             if (groupRankDoMapper.insertSelective(groupRankDo) < 1) {

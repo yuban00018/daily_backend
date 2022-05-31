@@ -113,8 +113,8 @@ public class GroupController {
 
     @GetMapping ("/userDelPlanInfo")
     public Result userDelPlanInfo(Integer userId, Integer planId) {
-        // log.info("planId: " + planId);
-        // log.info("userId: " + userId);
+        log.info("planId: " + planId);
+        log.info("userId: " + userId);
         return groupService.userDelPlanInfo(userId, planId);
     }
 
